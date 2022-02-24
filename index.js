@@ -24,12 +24,21 @@ const buildProfilator = function buildProfilator () {
   const getTotalTimeEllapsed = () => timers.reduce((acc, curr) => acc + curr.ellapsedMillis, 0);
   const getTimeEllapsed = label => getTimer(label).ellapsedMillis;
 
+  const buildReportLabel = function buildReportLabel (text) {
+    if (text.length > 20) {
+      return `${text.substring(0, 17)}...`;
+    } else {
+      return `${text}                    `.substring(0, 20);
+    }
+  };
+
   const buildResultsReport = function buildResultsReport () {
     const totalTimeEllapsed = getTotalTimeEllapsed();
     return timers.sort((t1, t2) => t2.ellapsedMillis - t1.ellapsedMillis).reduce(function (report, timer) {
       const percent = totalTimeEllapsed !== 0 ? Math.round(timer.ellapsedMillis / totalTimeEllapsed * 100) : 0;
-      return `${report}${timer.label.substring(0, 11)}\t\t\t${timer.ellapsedMillis} ms (${percent} %)\n`;
-    }, `TOTAL TIME		${totalTimeEllapsed} ms\n`);
+      const label = buildReportLabel(timer.label);
+      return `${report}${label}${timer.ellapsedMillis} ms (${percent} %)\n`;
+    }, `TOTAL TIME          ${totalTimeEllapsed} ms\n`);
   };
 
   return {

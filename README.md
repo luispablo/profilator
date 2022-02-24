@@ -60,9 +60,10 @@ console.log(resultsReport);
 This would print this report, ordered by time spent
 
 ```sh
-TOTAL TIME	1000 ms
-db tasks		800 ms (80 %)
-io tasks		130 ms (13 %)
-set-up			70 ms (7 %)
+TOTAL TIME          1000 ms
+db tasks            800 ms (80 %)
+io tasks            130 ms (13 %)
+set-up              70 ms (7 %)
 ```
 
+*Each line will display the first 20 characters of the label, any longer one will be truncated.*

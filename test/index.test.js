@@ -24,14 +24,14 @@ test("Build results report", async function (t) {
   profilator.start("test02");
   await new Promise(res => setTimeout(res, 10));
   profilator.stop("test02");
-  profilator.start("test03");
+  profilator.start("test03 super long label");
   await new Promise(res => setTimeout(res, 30));
-  profilator.stop("test03");
+  profilator.stop("test03 super long label");
 
   const [totalLine, test03Line, test02Line] = profilator.buildResultsReport().split("\n");
-  t.truthy(totalLine.match(/TOTAL TIME\t\t[0-9]+ ms/), "First the total time line");
-  t.truthy(test03Line.match(/test03\t\t\t[0-9]+ ms \([0-9]+ %\)/), "Then the greatest time spent label");
-  t.truthy(test02Line.match(/test02\t\t\t[0-9]+ ms \([0-9]+ %\)/), "Finally the lowest value");
+  t.truthy(totalLine.match(/TOTAL TIME          [0-9]+ ms/), "First the total time line");
+  t.truthy(test03Line.match(/test03 super long...[0-9]+ ms \([0-9]+ %\)/), "Then the greatest time spent label");
+  t.truthy(test02Line.match(/test02              [0-9]+ ms \([0-9]+ %\)/), "Finally the lowest value");
 });
 
 test("Get times ellapsed", async function (t) {
