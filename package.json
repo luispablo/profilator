@@ -1,0 +1,34 @@
+{
+  "name": "profilator",
+  "version": "1.0.0",
+  "description": "Zero dependency tool to measure time spent in JavaScript code",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/ava/entrypoints/cli.mjs --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luispablo/profilator.git"
+  },
+  "keywords": [
+    "timers",
+    "stopwatch",
+    "profile",
+    "profiling",
+    "timekeeper"
+  ],
+  "author": "@luispablo",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/luispablo/profilator/issues"
+  },
+  "homepage": "https://github.com/luispablo/profilator#readme",
+  "devDependencies": {
+    "ava": "^4.0.1"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.test.js"
+    ]
+  }
+}
