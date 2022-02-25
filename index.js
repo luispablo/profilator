@@ -1,5 +1,5 @@
 
-const buildProfilator = function buildProfilator () {
+const buildProfilator = function buildProfilator (sessionName) {
 
   const timers = [];
 
@@ -38,7 +38,7 @@ const buildProfilator = function buildProfilator () {
       const percent = totalTimeEllapsed !== 0 ? Math.round(timer.ellapsedMillis / totalTimeEllapsed * 100) : 0;
       const label = buildReportLabel(timer.label);
       return `${report}${label}${timer.ellapsedMillis} ms (${percent} %)\n`;
-    }, `TOTAL TIME          ${totalTimeEllapsed} ms\n`);
+    }, `# Profilator session${sessionName ? `: ${sessionName}` : ""}\nTOTAL TIME          ${totalTimeEllapsed} ms\n`);
   };
 
   return {

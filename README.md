@@ -16,7 +16,7 @@ Start and stop each fraction of the code you want to measure and / or compare wi
 
 ```javascript
 const buildProfilator = require("profilator");
-const profilator = buildProfilator();
+const profilator = buildProfilator("My big test"); // You can provide a name for the profilator instance
 // or
 const profilator = require("profilator")(); // if you intend to use only one
 
@@ -59,7 +59,8 @@ console.log(resultsReport);
 
 This would print this report, ordered by time spent
 
-```sh
+```
+# Profilator session: My big test
 TOTAL TIME          1000 ms
 db tasks            800 ms (80 %)
 io tasks            130 ms (13 %)

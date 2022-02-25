@@ -28,10 +28,19 @@ test("Build results report", async function (t) {
   await new Promise(res => setTimeout(res, 30));
   profilator.stop("test03 super long label");
 
-  const [totalLine, test03Line, test02Line] = profilator.buildResultsReport().split("\n");
+  const [_, totalLine, test03Line, test02Line] = profilator.buildResultsReport().split("\n");
   t.truthy(totalLine.match(/TOTAL TIME          [0-9]+ ms/), "First the total time line");
   t.truthy(test03Line.match(/test03 super long...[0-9]+ ms \([0-9]+ %\)/), "Then the greatest time spent label");
   t.truthy(test02Line.match(/test02              [0-9]+ ms \([0-9]+ %\)/), "Finally the lowest value");
+});
+
+test("Build results report title", function (t) {
+  const profilatorNoName = buildProfilator();
+  const profilatorTest01 = buildProfilator("Test 01");
+  const [titleNoName] = profilatorNoName.buildResultsReport().split("\n");
+  const [titleTest01] = profilatorTest01.buildResultsReport().split("\n");
+  t.is(titleNoName, "# Profilator session");
+  t.is(titleTest01, "# Profilator session: Test 01");
 });
 
 test("Get times ellapsed", async function (t) {
